@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ธีระยุทธ นิลสุวรรณ | TEERAYUT NINSUWAN - Computer Engineering RMUTP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    colors: {
+                        engineering: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f3750',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.3);
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(2, 132, 199, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans min-h-screen transition-colors duration-300 flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none border border-slate-700 dark:border-slate-300">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">คัดลอกเรียบร้อยแล้ว</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    TN
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-sky-500 transition-colors">TEERAYUT</span>
+                    <span class="text-[10px] text-sky-600 dark:text-sky-400 font-mono tracking-wider font-semibold uppercase">CPE @ RMUTP</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links & Dark Mode Toggle -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <a href="#about" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">เกี่ยวกับฉัน</a>
+                    <a href="#education" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">ประวัติการศึกษา</a>
+                    <a href="#skills" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">ทักษะ</a>
+                    <a href="#contact" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">ติดต่อ</a>
+                </nav>
+
+                <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg text-amber-400"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+
+        <!-- Hero / Digital Card Banner Section -->
+        <section id="about" class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-white p-6 sm:p-10 shadow-2xl border border-slate-800 glow-effect">
+            <!-- Background Grid Accent -->
+            <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+            <div class="absolute -top-24 -right-24 w-72 h-72 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+                <!-- Avatar / Photo Frame -->
+                <div class="relative group">
+                    <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-500 p-1 shadow-xl">
+                        <div class="w-full h-full rounded-[14px] bg-slate-800 overflow-hidden flex items-center justify-center relative">
+                            <!-- Placeholder Profile Avatar / SVG Vector -->
+                            <div class="w-full h-full bg-slate-800 flex flex-col items-center justify-center text-slate-400">
+                                <i class="fa-solid fa-user-gear text-5xl sm:text-6xl text-sky-400 mb-2"></i>
+                                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest">Student Profile</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="absolute -bottom-2 -right-2 bg-emerald-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full border-2 border-slate-900 flex items-center gap-1 shadow-lg">
+                        <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
+                        นักศึกษาปกติ
+                    </span>
+                </div>
+
+                <!-- Bio Info -->
+                <div class="flex-1 text-center md:text-left space-y-4">
+                    <div class="space-y-1">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>ปริญญาตรี ภาคปกติ</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+                            นายธีระยุทธ นิลสุวรรณ
+                        </h1>
+                        <p class="text-lg sm:text-xl font-medium text-sky-400 font-mono">
+                            Mr. TEERAYUT NINSUWAN
+                        </p>
+                    </div>
+
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                        นักศึกษาสาขาวิชา<span class="text-white font-semibold">วิศวกรรมคอมพิวเตอร์</span> คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร มีความสนใจด้านการพัฒนาซอฟต์แวร์ ระบบเครือข่าย และเทคโนโลยีดิจิทัล
+                    </p>
+
+                    <!-- Quick Actions -->
+                    <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
+                        <button onclick="copyToClipboard('056850405128-1', 'รหัสนักศึกษา')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-medium text-sm transition-all shadow-md active:scale-95">
+                            <i class="fa-solid fa-id-card"></i>
+                            <span>รหัสนักศึกษา: 056850405128-1</span>
+                            <i class="fa-regular fa-copy text-xs opacity-70"></i>
+                        </button>
+                        
+                        <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all active:scale-95">
+                            <i class="fa-solid fa-paper-plane text-sky-400"></i>
+                            <span>ช่องทางติดต่อ</span>
+                        </a>
+
+                        <button onclick="downloadVCard()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all active:scale-95">
+                            <i class="fa-solid fa-address-card text-indigo-400"></i>
+                            <span>บันทึกนามบัตร (vCard)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Official Education Details Section -->
+        <section id="education" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                <h2 class="text-xl sm:text-2xl font-bold flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-base">
+                        <i class="fa-solid fa-university"></i>
+                    </span>
+                    ข้อมูลสถานภาพนักศึกษา
+                </h2>
+                <span class="text-xs font-mono bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2.5 py-1 rounded-md">RMUTP</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Info Item 1 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors group">
+                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">รหัสนักศึกษา</div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-lg font-bold font-mono text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                            056850405128-1
+                        </div>
+                        <button onclick="copyToClipboard('056850405128-1', 'รหัสนักศึกษา')" class="p-2 text-slate-400 hover:text-sky-500 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Item 2 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
+                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">สถาบันการศึกษา</div>
+                    <div class="text-base font-bold text-slate-900 dark:text-white">
+                        มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Rajamangala University of Technology Phra Nakhon</div>
+                </div>
+
+                <!-- Info Item 3 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
+                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">คณะ</div>
+                    <div class="text-base font-bold text-slate-900 dark:text-white">
+                        คณะวิศวกรรมศาสตร์
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Faculty of Engineering</div>
+                </div>
+
+                <!-- Info Item 4 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
+                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">สาขาวิชา</div>
+                    <div class="text-base font-bold text-sky-600 dark:text-sky-400">
+                        วิศวกรรมคอมพิวเตอร์
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Computer Engineering</div>
+                </div>
+
+                <!-- Info Item 5 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
+                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">หลักสูตร / ระดับการศึกษา</div>
+                    <div class="text-base font-bold text-slate-900 dark:text-white">
+                        วิศวกรรมศาสตรบัณฑิต
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">ปริญญาตรี 4 ปี ภาคปกติ</div>
+                </div>
+
+                <!-- Info Item 6 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
+                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">สถานภาพนักศึกษา</div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <span class="text-base font-bold text-slate-900 dark:text-white">นักศึกษาปกติ</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">อยู่ในช่วงการศึกษาตามแผน</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Computer Engineering Skills Section -->
+        <section id="skills" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                <h2 class="text-xl sm:text-2xl font-bold flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-base">
+                        <i class="fa-solid fa-code"></i>
+                    </span>
+                    ความสนใจและทักษะทางคอมพิวเตอร์
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Programming & Web Development -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code text-sky-500"></i>
+                        การเขียนโปรแกรม & การพัฒนาเว็บ
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-brands fa-html5 text-orange-500"></i> HTML5 / CSS3
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-brands fa-js text-yellow-500"></i> JavaScript
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-brands fa-python text-blue-500"></i> Python
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-c text-sky-600"></i> C / C++
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-brands fa-git-alt text-red-500"></i> Git & GitHub
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Hardware & Network -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-network-wired text-indigo-500"></i>
+                        ระบบเครือข่าย & ฮาร์ดแวร์
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-microchip text-purple-500"></i> Embedded Systems
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-server text-emerald-500"></i> Computer Networking
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-brands fa-linux text-yellow-600"></i> Linux Basics
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-database text-teal-500"></i> Database Systems
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Digital Business Card Section -->
+        <section id="contact" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                <h2 class="text-xl sm:text-2xl font-bold flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-base">
+                        <i class="fa-solid fa-address-book"></i>
+                    </span>
+                    การติดต่อ & สื่อสังคมออนไลน์
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Email -->
+                <a href="mailto:teerayut.ninsuwan@rmutp.ac.th" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-sky-500 transition-all flex flex-col justify-between group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-sky-500"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-medium">อีเมลสถาบัน / ติดต่อ</div>
+                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
+                            teerayut.n@rmutp.ac.th
+                        </div>
+                    </div>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-700 dark:hover:border-slate-300 transition-all flex flex-col justify-between group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-medium">เก็บผลงานโค้ด</div>
+                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
+                            GitHub Profile
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Facebook / Social -->
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition-all flex flex-col justify-between group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-facebook"></i>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-blue-500"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-medium">โซเชียลมีเดีย</div>
+                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
+                            Facebook
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Copy Link Button -->
+                <button onclick="copyToClipboard(window.location.href, 'ลิงก์เว็บไซต์')" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all flex flex-col justify-between text-left group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </div>
+                        <i class="fa-regular fa-copy text-xs text-slate-400 group-hover:text-emerald-500"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-medium">แชร์หน้าเว็บนี้</div>
+                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
+                            คัดลอก URL เว็บไซต์
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-5xl mx-auto px-4 space-y-2">
+            <p>© 2026 นายธีระยุทธ นิลสุวรรณ (Teerayut Ninsuwan) — Computer Engineering RMUTP</p>
+            <p class="font-mono text-[11px] text-slate-400">Student ID: 056850405128-1 | Built with HTML & Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Dark Mode / Light Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check local theme storage or system preferences
+        if (localStorage.getItem('color-theme') === 'light' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.remove('dark');
+            lightIcon.classList.add('hidden');
+            darkIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // Copy to clipboard helper
+        function copyToClipboard(text, label) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text);
+            } else {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
+            showToast(`คัดลอก ${label} เรียบร้อยแล้ว`);
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // Download vCard Contact File
+        function downloadVCard() {
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+N:Ninsuwan;Teerayut;;Mr.;
+FN:นายธีระยุทธ นิลสุวรรณ (Teerayut Ninsuwan)
+ORG:มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร;คณะวิศวกรรมศาสตร์
+TITLE:นักศึกษาวิศวกรรมคอมพิวเตอร์ (056850405128-1)
+EMAIL;TYPE=INTERNET,HOME:teerayut.ninsuwan@rmutp.ac.th
+NOTE:นักศึกษาปริญญาตรี ภาคปกติ สาขาวิชาวิศวกรรมคอมพิวเตอร์
+END:VCARD`;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Teerayut_Ninsuwan.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('ดาวน์โหลดนามบัตรดิจิทัลเรียบร้อยแล้ว');
+        }
+    </script>
+</body>
+</html>
